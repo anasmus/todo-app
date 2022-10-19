@@ -1,0 +1,183 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap');
+
+:root {
+    --clr-primary: hsl(220, 98%, 61%);
+    --bg-gradient: linear-gradient(135deg, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+}
+
+.dark-theme {
+    --main: hsl(235, 24%, 19%);
+    --main-accent: hsl(235, 21%, 11%);
+    --secondary: hsl(236, 33%, 92%);
+    --secondary-accent: hsl(234, 11%, 52%);
+    --secondary-strong: hsl(234, 39%, 85%);
+    --bg-desktop: url('imgs/bg-desktop-dark.jpg');
+    --bg-mobile: url('imgs/bg-mobile-dark.jpg');
+    --theme-icon: url('imgs/icon-sun.svg');
+}
+
+.light-theme {
+    --main: hsl(0, 0%, 98%);
+    --main-accent: hsl(236, 33%, 92%);
+    --secondary: hsl(233, 11%, 84%);
+    --secondary-accent: hsl(236, 9%, 61%);
+    --secondary-strong: hsl(235, 19%, 35%);
+    --bg-desktop: url('imgs/bg-desktop-light.jpg');
+    --bg-mobile: url('imgs/bg-mobile-light.jpg');
+    --theme-icon: url('imgs/icon-moon.svg');
+}
+*, *::after, *::before {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: 'Josefin Sans', sans-serif;
+    background-color: var(--main-accent);
+    font-size: 1.125rem;
+}
+.wrapper {
+    width: 90%;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+/* LAYOUT */
+/* 0. Background  */
+.bg__img {
+    padding-block: 80px;
+    background-image: var(--bg-desktop);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+/* 1. Header  */
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: -80px;
+    margin-bottom: 20px;
+}
+.header__title {
+    color: var(--secondary);
+    letter-spacing: 8px;
+    text-transform: uppercase;
+}
+.header__icon {
+    content: var(--theme-icon);
+}
+/* 2. Form  */
+.form {
+    position: relative;
+}
+.task__form {
+    width: 100%;
+    height: 50px;
+    border: 0;
+    outline: none;
+    border-radius: 8px;
+    background-color: var(--main);
+    color: var(--secondary-accent);
+    padding-left: 60px;
+    font-size: 1em;
+    font-family: 'Josefin Sans', sans-serif;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+    border: 1px solid var(--main);
+    -webkit-text-fill-color: var(--secondary-accent);
+    -webkit-box-shadow: 0 0 0px 1000px var(--main) inset;
+    transition: background-color 5000s ease-in-out 0s;
+}
+.circle {
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    border: 1px solid var(--secondary-strong);
+    top: calc(25px - 10px);
+    left: calc(30px - 10px);
+}
+/* 3. Tasks  */
+.tasks {
+    margin-top: 20px;
+    border-radius: 8px;
+    background-color: var(--main);
+    color: var(--secondary-accent);
+}
+.tasks__list {
+    list-style-type: none;
+}
+.task__item {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    color: var(--secondary-strong);
+    padding-inline: 20px;
+    border-bottom: 1px solid var(--secondary-accent);
+}
+.task__item--completed {
+    text-decoration: line-through;
+    color: var(--secondary-accent);
+    text-decoration-color: var(--secondary-accent);
+}
+.tasks__checkbox {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 1px solid var(--secondary-strong);
+    border-radius: 50%;
+    transition: all 150ms ease;
+    flex-shrink: 0;
+}
+.tasks__checkbox:hover {
+    background: 
+    linear-gradient(var(--main), var(--main)) padding-box,
+    var(--bg-gradient) border-box;
+    border-radius: 50%;
+    border: 1px solid transparent;
+}
+.task__cross {
+    margin-left: auto;
+    display: none;
+    cursor: pointer;
+}
+.task__item:hover .task__cross {
+    display: block;
+}
+.tasks__checkbox:checked {
+    background: url('imgs/icon-check.svg'), var(--bg-gradient);
+    border: 0;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.tasks__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    height: 50px;
+    padding-inline: 20px;
+}
+.tasks__footer-states {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+/* 5. States  */
+.states, .clear__completed {
+    cursor: pointer;
+    transition: color 150ms ease;
+}
+.states:hover, .clear__completed:hover {
+    color: var(--secondary-strong);
+}
+.active__state {
+    color: var(--clr-primary);
+    font-weight: 700;
+}

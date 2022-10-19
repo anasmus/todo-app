@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="assets/style.css">
+  <title>TODO App</title>
+</head>
+<body class="light-theme">
+  <div class="bg__img"></div>
+  <div class="wrapper">
+    <header class="header">
+      <h1 class="header__title">Todo</h1>
+      <img src="" alt="theme icon sun / moon" class="header__icon">
+    </header>
+    <main class="main">
+      <form class="form">
+        <input type="text" name="task" id="task" class="task__form" placeholder="Create a new todo...">
+        <div class="circle"></div>
+      </form>
+      <section class="tasks">
+        <ul class="tasks__list"></ul>
+        <div class="tasks__footer">
+          <p><span class="items__count">0</span> items left</p>
+          <div class="tasks__footer-states">
+            <p class="states active__state">All</p>
+            <p class="states">Active</p>
+            <p class="states">Completed</p>
+          </div>
+          <p class="clear__completed">Clear Completed</p>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script src="assets/script.js"></script>
+</body>
+</html>
