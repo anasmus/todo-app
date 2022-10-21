@@ -49,6 +49,9 @@ function addTaskToDOM(task) {
     const taskCrossImg = document.createElement('img');
     taskItem.setAttribute('data-id', task.id);
     taskItem.className = 'task__item';
+    taskItem.draggable = true;
+    taskItem.addEventListener('dragstart', dragStart);
+    taskItem.addEventListener('dragend', dragEnd);
     taskCheckbox.type = 'checkbox';
     taskCheckbox.className = 'tasks__checkbox';
     taskCheckbox.addEventListener('click', toggleTaskCompletion);
@@ -125,4 +128,44 @@ function updateView(e) {
 
 function updateLocalStorage() {
     localStorage.setItem('tasks', JSON.stringify(tasks));
+}
+
+// Drag and Drop Functionality
+tasksList.addEventListener('dragover', dragHandler);
+function dragStart(e) {
+    e.target.classList.add('dragging');
+}
+function dragEnd(e) {
+    const nextItem = document.querySelector('.dragging + .task__item');
+    const currentItem = e.target;
+    e.target.classList.remove('dragging');
+    // Updating tasks order
+    currentItemIndex = currentItem.getAttribute('data-id');
+    nextItemIndex = (nextItem) ? nextItem.getAttribute('data-id') : tasks.length;
+    [ currentItemTask ] = tasks.splice(currentItemIndex, 1);
+    tasks.splice(nextItemIndex - 1, 0, currentItemTask);
+    reCreateDOM();
+    updateLocalStorage();
+}
+function dragHandler(e) {
+    e.preventDefault();
+    const afterElement = getDragAfterElement(tasksList, e.clientY);
+    const draggable = document.querySelector('.dragging');
+    if (afterElement == null) {
+        tasksList.appendChild(draggable);
+    } else {
+        tasksList.insertBefore(draggable, afterElement);
+    }
+}
+function getDragAfterElement(container, y) {
+    const draggableElements = [...container.querySelectorAll('.task__item:not(.dragging)')]
+    return draggableElements.reduce((closest, child) => {
+        const box = child.getBoundingClientRect()
+        const offset = y - box.top - box.height / 2
+        if (offset < 0 && offset > closest.offset) {
+            return { offset: offset, element: child }
+        } else {
+            return closest
+        }
+    }, { offset: Number.NEGATIVE_INFINITY }).element;
 }

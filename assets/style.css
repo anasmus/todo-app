@@ -117,6 +117,7 @@ input:-webkit-autofill:focus {
     color: var(--secondary-strong);
     padding-inline: 20px;
     border-bottom: 1px solid var(--secondary-accent);
+    cursor: grab;
 }
 .task__item--completed {
     text-decoration: line-through;
@@ -180,4 +181,25 @@ input:-webkit-autofill:focus {
 .active__state {
     color: var(--clr-primary);
     font-weight: 700;
+}
+
+/* 6. Drag n Drop  */
+.dragging {
+    opacity: 0.5;
+}
+
+/* 7. Mobile View  */
+@media (max-width: 768px) {
+    body {
+        font-size: 0.8rem;
+    }
+    .bg__img {
+        background-image: var(--bg-mobile);
+    }
+}
+
+@media (max-width: 400px) {
+    .tasks__footer {
+        font-size: 0.6rem;
+    }
 }
