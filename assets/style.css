@@ -58,6 +58,9 @@ body {
     margin-top: -80px;
     margin-bottom: 20px;
 }
+.header__icon {
+    cursor: pointer;
+}
 .header__title {
     color: var(--secondary);
     letter-spacing: 8px;
